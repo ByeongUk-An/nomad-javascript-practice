@@ -24,17 +24,17 @@ function askForName() {
 function paintGreeting(text) {
   form.classList.remove(SHOWING_CN);
   greeting.classList.add(SHOWING_CN);
-  greeting.innerText = `Hello ${text}`;
+  greeting.innerText = `어서오세요 ${text}님 반갑습니다`;
 }
 
 function loadName() {
   const currentUser = localStorage.getItem(USER_LS);
 
   if (currentUser === null) {
-    // 유저가 없을때
+    //만약 currentUser 가 없다면 이것을 실행
     askForName();
   } else {
-    // 유저가 있을떄
+    //currentUser 가 있다면 이것을 실행
     paintGreeting(currentUser);
   }
 }
