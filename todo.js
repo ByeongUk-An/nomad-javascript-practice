@@ -1,9 +1,7 @@
 const toDoForm = document.querySelector(".js-toDoForm");
 const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.querySelector(".js-toDoList");
-
 const TODOS_LS = "toDos";
-
 let toDos = [];
 
 function deleteToDo(event) {
@@ -17,7 +15,6 @@ function deleteToDo(event) {
   saveToDos();
 }
 
-// saveToDos는 위에 toDos를 가져와서 로컬에 저장하는일 하게됨
 function saveToDos() {
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
@@ -29,12 +26,11 @@ function paintToDo(text) {
   const newId = toDos.length + 1;
   delBtn.innerText = "❌";
   delBtn.addEventListener("click", deleteToDo);
-  li.appendChild(delBtn);
   span.innerText = text;
+  li.appendChild(delBtn);
   li.appendChild(span);
   li.id = newId;
   toDoList.appendChild(li);
-
   const toDoObj = {
     text: text,
     id: newId,
@@ -50,12 +46,10 @@ function handleSubmit(event) {
   toDoInput.value = "";
 }
 
-// JSON은 'JavaScript Object Notation' 의 줄임말이고 데이터를 전달할떄 자바스크립가 그걸 다룰수 있도록 오브젝트로 바꿔주는 기능인 셈이다.
-// 그래서 object를 string으로 변환해주기도하고 string을 object로 변환해주기도 한다.
 function loadToDos() {
-  const loadedToDos = localStorage.getItem(TODOS_LS);
-  if (loadedToDos !== null) {
-    const parsedToDos = JSON.parse(loadedToDos);
+  const loadedtoDos = localStorage.getItem(TODOS_LS);
+  if (loadedtoDos !== null) {
+    const parsedToDos = JSON.parse(loadedtoDos);
     parsedToDos.forEach(function (toDo) {
       paintToDo(toDo.text);
     });
